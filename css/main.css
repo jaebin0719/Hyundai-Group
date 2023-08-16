@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "utf-8";
 @import url("font.css");
 * {
   margin: 0;
@@ -29,8 +29,10 @@ body {
   letter-spacing: -0.64px;
   color: #191919;
   word-break: keep-all;
-  overflow: hidden;
+  overflow-x: hidden;
   min-width: 780px;
+  /* height: 1000px; */
+  background-color: rgb(100, 215, 215);
 }
 /* 공통요소 */
 .wrap {
@@ -45,7 +47,7 @@ body {
   margin: 0 auto;
   /* background-color: brown; */
 }
-/* 주 메뉴 */
+/* 주메뉴 */
 .nav {
   position: fixed;
   left: 100%;
@@ -62,53 +64,53 @@ body {
 .nav-active {
   left: calc(100% - 450px);
 }
-.nav-close{
-    position: absolute;
-    right: 30px;
-    top: 20px;
-    display: block;
-    width: 23px;
-    height: 23px;
-    background: url("../images/close2.png")no-repeat center;
-    cursor: pointer;
-    border: none;
-    font-size: 0;
+.nav-close {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  display: block;
+  width: 23px;
+  height: 23px;
+  background: url("../images/close2.png") no-repeat center;
+  cursor: pointer;
+  border: none;
+  font-size: 0;
 }
-.gnb{
-    position: relative;
-    display: block;
+.gnb {
+  position: relative;
+  display: block;
 }
 .gnb > li {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
 }
-.gnb > li > a{
-    display: block;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: -0.9px;
-    color: white;
+.gnb > li > a {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -0.9px;
+  color: #fff;
 }
-.depth2{
-    position: relative;
-    display: block;
-    width: 180px;
+.depth2 {
+  position: relative;
+  display: block;
+  width: 180px;
 }
-.depth2 > li{
-    position: relative;
-    display: block;
-    padding-bottom: 20px;
+.depth2 > li {
+  position: relative;
+  display: block;
+  padding-bottom: 20px;
 }
-.depth2 > li > a{
-    position: relative;
-    display: block;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: -0.75px;
-    color: #fff;
+.depth2 > li > a {
+  position: relative;
+  display: block;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.75px;
+  color: #fff;
 }
 /* 상단 */
 .header {
@@ -143,6 +145,9 @@ body {
 }
 .language-box {
   padding-top: 25px;
+}
+.language-word {
+  position: relative;
   display: block;
   padding-right: 22px;
   font-size: 16px;
@@ -154,7 +159,7 @@ body {
 .language-word::after {
   content: "";
   display: inline-block;
-  background: url(../images/select_icon2.png) no-repeat;
+  background: url("../images/select_icon2.png") no-repeat;
   background-size: cover;
   width: 8px;
   height: 7px;
@@ -170,27 +175,92 @@ body {
   opacity: 0;
   visibility: hidden;
 }
-.language-box-active li{
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
+.language-box-active li {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
 }
-.language li a{
-    display: block;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.83px;
-    color: #000;
-    padding: 5px 0;
+.language li a {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.83px;
+  color: #000;
+  padding: 5px 0;
 }
-.bt-menu{
-    display: inline-block;
-    width: 37px;
-    height: 12px;
-    font-size: 0;
-    margin-left: 50px;
-    background: url("../images/toggle_navi.png") no-repeat ;
-    background-size: cover;
-    border: none;
-    cursor: pointer;
+.bt-menu {
+  display: inline-block;
+  width: 37px;
+  height: 12px;
+  font-size: 0;
+  margin-left: 50px;
+  background: url("../images/toggle_navi.png") no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+.visual {
+  position: relative;
+  height: 100vh;
+}
+.swVisual {
+  width: 100%;
+  height: 100%;
+}
+/* 비디오 영역에 가득채우기 */
+.swVisual video {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+.visual .inner {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 7%;
+  /* swiper는 기본 z-index 가 있으므로 */
+  z-index: 99;
+}
+.visual-control {
+  display: flex;
+  align-items: flex-start;
+  gap: 0 35px;
+}
+.visual-control li {
+  position: relative;
+  width: calc(100% / 8);
+  text-align: center;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.visual-control li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.visual-control li > .bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 1);
+  /* 비디오 시간을 100등분해서 처리 */
+  transition: width;
+}
+.visual-control li span{
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
 }
