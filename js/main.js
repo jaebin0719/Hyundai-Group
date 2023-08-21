@@ -75,11 +75,11 @@ window.onload = function () {
   let videoIndex = 0;
   videos[videoIndex].play();
   // visual slide
-  let swVisual =new Swiper(".swVisual", {
-    Loop : true,
+  let swVisual = new Swiper(".swVisual", {
+    Loop: true,
   });
   // 슬라이드 변경 이벤트시 처리
-  swVisual.on("slideChange", function(){
+  swVisual.on("slideChange", function () {
     // 진행중인 비디오 멈춤
     videos[videoIndex].pause();
     // 다음 화면에 보이는 swiper 슬라이드 변화
@@ -87,8 +87,8 @@ window.onload = function () {
     // 현재 보이는 슬라이드에 해당하는 비디오의 재생 시간을
     videos[videoIndex].currentTime = 0;
     const playPromise = videos[videoIndex].play();
-    if(playPromise !== undefined){
-      playPromise.then((_)=> {}).catch((error) => {})
+    if (playPromise !== undefined) {
+      playPromise.then((_) => {}).catch((error) => {});
     }
     // 방어코드
     clearInterval(videoTimer);
@@ -101,22 +101,22 @@ window.onload = function () {
   let barScaleW = 0;
   // 타이머를 생성한다
   let videoTimer;
-  function videoReset(){
+  function videoReset() {
     // 처음에는 0%로 만들려고 한다
     barScaleW = 0;
     // 최초에 bar 를 초기화 시킨다
-    for(let i = 0; i < bars.length; i++){
+    for (let i = 0; i < bars.length; i++) {
       let tag = bars[i];
       tag.style.width = `${barScaleW}%`;
     }
     // 활성화 될때 bar 클래스 선택
-    let activeBar = bars[videoIndex]
+    let activeBar = bars[videoIndex];
     clearInterval(videoTimer);
-    let videotime = videosTimeArr[videoIndex]
-    videoTimer = setInterval(()=> {
-      barScaleW++
+    let videotime = videosTimeArr[videoIndex];
+    videoTimer = setInterval(() => {
+      barScaleW++;
       activeBar.style.width = `${barScaleW}%`;
-      if(barScaleW >= 100){
+      if (barScaleW >= 100) {
         swVisual.slideNext();
         clearInterval(videoTimer);
         videoReset();
@@ -125,10 +125,19 @@ window.onload = function () {
   }
   videoReset();
   const visualControlli = document.querySelectorAll(".visual-control > li");
-  visualControlli.forEach((item,index) => {
-    item.addEventListener("click" , function(){
+  visualControlli.forEach((item, index) => {
+    item.addEventListener("click", function () {
       videoIndex = index;
       swVisual.slideTo(videoIndex);
     });
+  });
+  // 비지니스 슬라이드
+  const swBusiness = new Swiper(".swBusiness", {
+    loop: true,
+    speed: 500,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
   });
 };
